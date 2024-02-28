@@ -11,25 +11,24 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from DjangoRestGit.env import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-1r*4dph-ld#43f437iwpy-)r1z07qz$l14lhb*s3&q+byexbfd'
+SECRET_KEY = env.secret
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.debug
 
 ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = [
     "admin_interface",
     "colorfield",
@@ -89,7 +88,14 @@ WSGI_APPLICATION = 'DjangoRestGit.wsgi.application'
 }'''
 
 DATABASES = {
-
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': env.db_name,
+        'USER': env.user,
+        'PASSWORD': env.password,
+        'HOST': env.host,
+        'PORT': env.port
+    }
 }
 
 
